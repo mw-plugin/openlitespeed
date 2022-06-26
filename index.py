@@ -51,43 +51,13 @@ def getArgs():
     return tmp
 
 
-def clearTemp():
-    pass
-
-
 def getConf():
-    path = getServerDir() + "/nginx/conf/nginx.conf"
+    path = "/usr/local/lsws/VERSION"
     return path
-
-
-def getConfTpl():
-    path = getPluginDir() + '/conf/nginx.conf'
-    return path
-
-
-def getInitDTpl():
-    path = getPluginDir() + "/init.d/nginx.tpl"
-    return path
-
-
-def getFileOwner(filename):
-    import pwd
-    stat = os.lstat(filename)
-    uid = stat.st_uid
-    pw = pwd.getpwuid(uid)
-    return pw.pw_name
-
-
-def checkAuthEq(file, owner='root'):
-    fowner = getFileOwner(file)
-    if (fowner == owner):
-        return True
-    return False
 
 
 def initDreplace():
-    file_tpl = getInitDTpl()
-    return file_bin
+    return '/usr/local/lsws/bin/lswsctrl'
 
 
 def status():
