@@ -1,7 +1,7 @@
 {
-	"title":"OpenLiteSpeed",
+	"title":"openlitespeed",
 	"tip":"soft",
-	"name":"OpenLiteSpeed",
+	"name":"openlitespeed",
 	"type":"其他插件",
 	"ps":"OpenLiteSpeed是LiteSpeed Web Server Enterprise的开源版本。",
 	"shell":"install.sh",
