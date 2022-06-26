@@ -16,3 +16,8 @@ cp -rf  /tmp/openlitespeed-main/* /www/server/mdserver-web/plugins/openlitespeed
 
 rm -rf /tmp/mw_plugin.zip
 rm -rf /tmp/openlitespeed-main
+
+
+
+/www/server/mdserver-web/plugins/openlitespeed && /bin/bash install install 1.7.16
+
