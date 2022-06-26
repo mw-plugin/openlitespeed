@@ -74,7 +74,8 @@ Install_app()
 	fi
 
 	cd ${openLSDir}/openlitespeed-${VERSION} && ./configure \
-	--prefix=$serverPath/openlitespeed 
+	--prefix=$serverPath/openlitespeed \
+	--with-zlib=${serverPath}/lib/zlib
 
 	make && make install && make clean
 
