@@ -32,13 +32,13 @@ fi
 
 if [ "${OSNAME}" == "debian" ] || [ "${OSNAME}" == "ubuntu" ];then
 	apt update -y
-	apt install -y build-essential
+	apt install -y build-essential go
 	apt install -y rcs libpcre3-dev libexpat1-dev libssl-dev libgeoip-dev libudns-dev zlib1g-dev libxml2 libxml2-dev libpng-dev openssl git
 fi
 
 if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "fedora" ] || [ "${OSNAME}" == "rocky" ] || [ "${OSNAME}" == "alma" ] ;then
 	yum install -y epel-release
-	yum install -ygcc gcc-c++ make autoconf glibc rcs git
+	yum install -ygcc gcc-c++ make autoconf glibc rcs git go
 	yum install -y pcre-devel openssl-devel expat-devel geoip-devel zlib-devel udns-devel
 fi
 
