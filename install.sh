@@ -62,7 +62,7 @@ openLSDir=${serverPath}/source/openlitespeed
 
 Install_app()
 {
-	mkdir -p ${openLSDir}
+	mkdir -p $serverPath/openlitespeed
 	echo '正在安装脚本文件...' > $install_tmp
 
 	
