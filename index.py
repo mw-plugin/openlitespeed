@@ -17,7 +17,7 @@ if mw.isAppleSystem():
 
 
 def getPluginName():
-    return 'openresty'
+    return 'openlitespeed'
 
 
 def getPluginDir():
@@ -52,12 +52,7 @@ def getArgs():
 
 
 def clearTemp():
-    path_bin = getServerDir() + "/nginx"
-    mw.execShell('rm -rf ' + path_bin + '/client_body_temp')
-    mw.execShell('rm -rf ' + path_bin + '/fastcgi_temp')
-    mw.execShell('rm -rf ' + path_bin + '/proxy_temp')
-    mw.execShell('rm -rf ' + path_bin + '/scgi_temp')
-    mw.execShell('rm -rf ' + path_bin + '/uwsgi_temp')
+    pass
 
 
 def getConf():

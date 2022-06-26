@@ -75,15 +75,22 @@ Install_app()
 
 	#centos
 	if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "alma" ] ;then
-		#centos 8
-		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
+		VERSION=`cat /etc/*-release | grep VERSION_ID | awk -F = '{print $2}' | awk -F "\"" '{print $2}'`
 
-		#centos 7
-		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
+		if [ "${$VERSION}" == "8" ];then
+			#centos 8
+			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
+		fi
 
-		#ceontos 6
-		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
+		if [ "${$VERSION}" == "7" ];then
+			#centos 7
+			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
+		fi
 
+		if [ "${$VERSION}" == "7" ];then
+			#ceontos 6
+			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
+		fi
 	fi
 
 	if [ -d $serverPath/openlitespeed ];then
