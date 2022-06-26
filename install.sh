@@ -66,11 +66,19 @@ Install_app()
 	echo '正在安装脚本文件...' > $install_tmp
 
 	
+	if [ -f /usr/local/lsws/bin/lswsctrl ];then
+		if [ -d $serverPath/openlitespeed ];then
+			echo "${VERSION}" > $serverPath/openlitespeed/version.pl
+	    fi
+		echo '安装完成' > $install_tmp
+		exit 0
+	fi
+
 	# 二进制安装
 	# debian
 	if [ "${OSNAME}" == "debian" ] || [ "${OSNAME}" == "ubuntu" ];then
 		wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
-		apt install openlitespeed
+		apt install -y openlitespeed
 	fi
 
 	#centos
@@ -91,6 +99,8 @@ Install_app()
 			#ceontos 6
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
 		fi
+
+		yum install -y openlitespeed
 	fi
 
 	if [ -d $serverPath/openlitespeed ];then

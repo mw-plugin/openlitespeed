@@ -200,7 +200,7 @@ def status():
     return 'start'
 
 
-def restyOp(method):
+def olsOp(method):
     file = initDreplace()
 
     if not mw.isAppleSystem():
@@ -216,27 +216,26 @@ def restyOp(method):
 
 
 def start():
-    return restyOp('start')
+    return olsOp('start')
 
 
 def stop():
-    return restyOp('stop')
+    return olsOp('stop')
 
 
 def restart():
-    return restyOp('restart')
+    return olsOp('restart')
 
 
 def reload():
-    return restyOp('reload')
+    return olsOp('reload')
 
 
 def initdStatus():
-
     if mw.isAppleSystem():
         return "Apple Computer does not support"
 
-    shell_cmd = 'systemctl status openresty | grep loaded | grep "enabled;"'
+    shell_cmd = 'systemctl status lsws | grep loaded | grep "enabled;"'
     data = mw.execShell(shell_cmd)
     if data[0] == '':
         return 'fail'
@@ -247,7 +246,7 @@ def initdInstall():
     if mw.isAppleSystem():
         return "Apple Computer does not support"
 
-    mw.execShell('systemctl enable openresty')
+    mw.execShell('systemctl enable lsws')
     return 'ok'
 
 
@@ -255,7 +254,7 @@ def initdUinstall():
     if mw.isAppleSystem():
         return "Apple Computer does not support"
 
-    mw.execShell('systemctl disable openresty')
+    mw.execShell('systemctl disable lsws')
     return 'ok'
 
 
@@ -315,10 +314,6 @@ if __name__ == "__main__":
         print(initdUinstall())
     elif func == 'conf':
         print(getConf())
-    elif func == 'get_os':
-        print(getOs())
-    elif func == 'run_info':
-        print(runInfo())
     elif func == 'error_log':
         print(errorLogPath())
     else:
