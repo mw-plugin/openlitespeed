@@ -15,4 +15,4 @@ cp -rf  /tmp/openlitespeed-main/* /www/server/mdserver-web/plugins/openlitespeed
 
 
 rm -rf /tmp/mw_plugin.zip
-rm -rf /tmp/simple-plugin-main
+rm -rf /tmp/openlitespeed-main
