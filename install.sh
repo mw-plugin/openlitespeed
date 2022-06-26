@@ -65,20 +65,26 @@ Install_app()
 	mkdir -p ${openLSDir}
 	echo '正在安装脚本文件...' > $install_tmp
 
-	if [ ! -f ${openLSDir}/openlitespeed-${VERSION}.src.tgz ];then
-		wget -O ${openLSDir}/openlitespeed-${VERSION}.src.tgz https://openlitespeed.org/packages/openlitespeed-${VERSION}.src.tgz
+	
+	# 二进制安装
+	# debian
+	if [ "${OSNAME}" == "debian" ] || [ "${OSNAME}" == "ubuntu" ];then
+		wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
+		apt install openlitespeed
 	fi
 
-	if [ ! -d ${openLSDir}/openlitespeed-${VERSION} ];then
-		cd ${openLSDir} && tar -zxvf openlitespeed-${VERSION}.src.tgz
+	#centos
+	if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "alma" ] ;then
+		#centos 7
+		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
+
+		#centos 7
+		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
+
+		#ceontos 6
+		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
+
 	fi
-
-	cd ${openLSDir}/openlitespeed-${VERSION} && ./configure \
-	--prefix=$serverPath/openlitespeed \
-	--with-zlib=${serverPath}/lib/zlib \
-	--with-pcre=/usr/local
-
-	make && make install && make clean
 
 	if [ -d $serverPath/openlitespeed ];then
 		echo "${VERSION}" > $serverPath/openlitespeed/version.pl
