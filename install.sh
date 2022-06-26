@@ -38,7 +38,7 @@ fi
 
 if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "fedora" ] || [ "${OSNAME}" == "rocky" ] || [ "${OSNAME}" == "alma" ] ;then
 	yum install -y epel-release
-	yum install -ygcc gcc-c++ make autoconf glibc rcs git golang
+	yum install -y gcc gcc-c++ make autoconf glibc rcs git golang
 	yum install -y pcre-devel openssl-devel expat-devel geoip-devel zlib-devel udns-devel
 fi
 
