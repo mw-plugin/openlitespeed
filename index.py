@@ -65,29 +65,9 @@ def getConfTpl():
     return path
 
 
-def getOs():
-    data = {}
-    data['os'] = mw.getOs()
-    ng_exe_bin = getServerDir() + "/nginx/sbin/nginx"
-    if checkAuthEq(ng_exe_bin, 'root'):
-        data['auth'] = True
-    else:
-        data['auth'] = False
-    return mw.getJson(data)
-
-
 def getInitDTpl():
     path = getPluginDir() + "/init.d/nginx.tpl"
     return path
-
-
-def makeConf():
-    vhost = getServerDir() + '/nginx/conf/vhost'
-    if not os.path.exists(vhost):
-        os.mkdir(vhost)
-    php_status = getServerDir() + '/nginx/conf/php_status'
-    if not os.path.exists(php_status):
-        os.mkdir(php_status)
 
 
 def getFileOwner(filename):
@@ -105,96 +85,14 @@ def checkAuthEq(file, owner='root'):
     return False
 
 
-def confReplace():
-    service_path = os.path.dirname(os.getcwd())
-    content = mw.readFile(getConfTpl())
-    content = content.replace('{$SERVER_PATH}', service_path)
-
-    user = 'www'
-    user_group = 'www'
-
-    if mw.getOs() == 'darwin':
-        # macosx do
-        user = mw.execShell(
-            "who | sed -n '2, 1p' |awk '{print $1}'")[0].strip()
-        # user = 'root'
-        user_group = 'staff'
-        content = content.replace('{$EVENT_MODEL}', 'kqueue')
-    else:
-        content = content.replace('{$EVENT_MODEL}', 'epoll')
-
-    content = content.replace('{$OS_USER}', user)
-    content = content.replace('{$OS_USER_GROUP}', user_group)
-
-    # 主配置文件
-    nconf = getServerDir() + '/nginx/conf/nginx.conf'
-    __content = mw.readFile(nconf)
-    if __content.find('#user'):
-        mw.writeFile(nconf, content)
-
-    # 静态配置
-    static_conf = getServerDir() + '/nginx/conf/enable-php-00.conf'
-    if not os.path.exists(static_conf):
-        mw.writeFile(static_conf, '')
-
-    # give nginx root permission
-    ng_exe_bin = getServerDir() + "/nginx/sbin/nginx"
-    if not checkAuthEq(ng_exe_bin, 'root'):
-        args = getArgs()
-        sudoPwd = args['pwd']
-        cmd_own = 'chown -R ' + 'root:' + user_group + ' ' + ng_exe_bin
-        os.system('echo %s|sudo -S %s' % (sudoPwd, cmd_own))
-        cmd_mod = 'chmod 755 ' + ng_exe_bin
-        os.system('echo %s|sudo -S %s' % (sudoPwd, cmd_mod))
-        cmd_s = 'chmod u+s ' + ng_exe_bin
-        os.system('echo %s|sudo -S %s' % (sudoPwd, cmd_s))
-
-
 def initDreplace():
-
     file_tpl = getInitDTpl()
-    service_path = os.path.dirname(os.getcwd())
-
-    initD_path = getServerDir() + '/init.d'
-
-    # OpenResty is not installed
-    if not os.path.exists(getServerDir()):
-        print("ok")
-        exit(0)
-
-    # init.d
-    file_bin = initD_path + '/' + getPluginName()
-    if not os.path.exists(initD_path):
-        os.mkdir(initD_path)
-
-        # initd replace
-        content = mw.readFile(file_tpl)
-        content = content.replace('{$SERVER_PATH}', service_path)
-        mw.writeFile(file_bin, content)
-        mw.execShell('chmod +x ' + file_bin)
-
-        # config replace
-        confReplace()
-
-    # systemd
-    systemDir = '/lib/systemd/system'
-    systemService = systemDir + '/openresty.service'
-    systemServiceTpl = getPluginDir() + '/init.d/openresty.service.tpl'
-    if os.path.exists(systemDir) and not os.path.exists(systemService):
-        se_content = mw.readFile(systemServiceTpl)
-        se_content = se_content.replace('{$SERVER_PATH}', service_path)
-        mw.writeFile(systemService, se_content)
-        mw.execShell('systemctl daemon-reload')
-
-    # make nginx vhost or other
-    makeConf()
-
     return file_bin
 
 
 def status():
     data = mw.execShell(
-        "ps -ef|grep nginx |grep -v grep | grep -v python | awk '{print $2}'")
+        "ps -ef|grep openlitespeed |grep -v grep | grep -v python | awk '{print $2}'")
     if data[0] == '':
         return 'stop'
     return 'start'
@@ -204,7 +102,7 @@ def olsOp(method):
     file = initDreplace()
 
     if not mw.isAppleSystem():
-        data = mw.execShell('systemctl ' + method + ' openresty')
+        data = mw.execShell('systemctl ' + method + ' lsws')
         if data[1] == '':
             return 'ok'
         return 'fail'
