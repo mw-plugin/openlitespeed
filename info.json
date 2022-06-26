@@ -1,0 +1,16 @@
+{
+	"title":"OpenLiteSpeed",
+	"tip":"soft",
+	"name":"OpenLiteSpeed",
+	"type":"其他插件",
+	"ps":"OpenLiteSpeed是LiteSpeed Web Server Enterprise的开源版本。",
+	"shell":"install.sh",
+	"checks":"server/openlitespeed",
+	"path":"server/openlitespeed",
+	"author":"openlitespeed",
+	"home":"https://openlitespeed.org/downloads/",
+	"date":"2022-6-22",
+	"pid": "4",
+	"versions": ["1.7.16"],
+	"updates": ["1.7.16"]
+}
