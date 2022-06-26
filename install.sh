@@ -77,17 +77,17 @@ Install_app()
 	if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "alma" ] ;then
 		VERSION=`cat /etc/*-release | grep VERSION_ID | awk -F = '{print $2}' | awk -F "\"" '{print $2}'`
 
-		if [ "${$VERSION}" == "8" ];then
+		if [ "${VERSION}" == "8" ];then
 			#centos 8
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
 		fi
 
-		if [ "${$VERSION}" == "7" ];then
+		if [ "${VERSION}" == "7" ];then
 			#centos 7
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
 		fi
 
-		if [ "${$VERSION}" == "6" ];then
+		if [ "${VERSION}" == "6" ];then
 			#ceontos 6
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
 		fi
