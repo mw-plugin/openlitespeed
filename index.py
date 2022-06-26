@@ -157,7 +157,7 @@ def initdUinstall():
 
 
 def errorLogPath():
-    return getServerDir() + '/nginx/logs/error.log'
+    return '/usr/local/lsws/logs/error.log'
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
 	"ps":"OpenLiteSpeed是LiteSpeed Web Server Enterprise的开源版本。",
 	"shell":"install.sh",
 	"checks":"server/openlitespeed",
-	"path":"server/openlitespeed",
+	"path":"/usr/local/lsws/",
 	"author":"openlitespeed",
 	"home":"https://openlitespeed.org/downloads/",
 	"date":"2022-6-22",
