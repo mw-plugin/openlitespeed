@@ -87,7 +87,7 @@ Install_app()
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el7.noarch.rpm
 		fi
 
-		if [ "${$VERSION}" == "7" ];then
+		if [ "${$VERSION}" == "6" ];then
 			#ceontos 6
 			rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el6.noarch.rpm
 		fi
