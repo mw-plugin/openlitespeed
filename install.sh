@@ -75,7 +75,7 @@ Install_app()
 
 	#centos
 	if [ "${OSNAME}" == "centos" ] || [ "${OSNAME}" == "alma" ] ;then
-		#centos 7
+		#centos 8
 		rpm -Uvh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el8.noarch.rpm
 
 		#centos 7

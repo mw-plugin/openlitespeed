@@ -2,6 +2,13 @@
 OpenLiteSpeed是LiteSpeed Web Server Enterprise的开源版本。
 
 
+
+# 采用二进制安装
+
+系统支持
+
+https://openlitespeed.org/kb/install-ols-from-litespeed-repositories/
+
 # 脚本安装
 
 ```
