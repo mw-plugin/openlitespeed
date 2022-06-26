@@ -19,5 +19,5 @@ rm -rf /tmp/openlitespeed-main
 
 
 
-cd /www/server/mdserver-web/plugins/openlitespeed && /bin/bash install.sh install 1.7.16
+cd /www/server/mdserver-web/plugins/openlitespeed && /bin/bash install.sh install 1.0
 

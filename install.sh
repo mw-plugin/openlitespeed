@@ -112,10 +112,6 @@ Install_app()
 Uninstall_app()
 {
 	rm -rf $serverPath/openlitespeed
-	
-	if [ -f /lib/systemd/system/openlitespeed.service ];then
-		rm -rf /lib/systemd/system/openlitespeed.service
-	fi
 	echo '卸载完成' > $install_tmp
 }
 
