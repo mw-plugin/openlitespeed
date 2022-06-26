@@ -69,7 +69,7 @@ Install_app()
 		wget -O ${openLSDir}/openlitespeed-${VERSION}.src.tgz https://openlitespeed.org/packages/openlitespeed-${VERSION}.src.tgz
 	fi
 
-	if [ ! -d {openLSDir}/openlitespeed-${VERSION} ];then
+	if [ ! -d ${openLSDir}/openlitespeed-${VERSION} ];then
 		cd ${openLSDir} && tar -zxvf openlitespeed-${VERSION}.src.tgz
 	fi
 
