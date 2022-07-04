@@ -77,7 +77,7 @@ Install_app()
 	# 二进制安装
 	# debian
 	if [ "${OSNAME}" == "debian" ] || [ "${OSNAME}" == "ubuntu" ];then
-		wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | sudo bash
+		wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
 		apt install -y openlitespeed
 	fi
 
