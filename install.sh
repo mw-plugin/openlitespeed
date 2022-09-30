@@ -78,6 +78,8 @@ Install_app()
 	# debian
 	if [ "${OSNAME}" == "debian" ] || [ "${OSNAME}" == "ubuntu" ];then
 		wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash
+
+		# apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 011AA62DEDA1F085
 		apt install -y openlitespeed
 	fi
 
